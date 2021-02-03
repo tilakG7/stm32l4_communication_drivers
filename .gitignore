@@ -1,7 +1,7 @@
 *~
-.cproject
-.project
-.settings/
-Debug/
-STM32*
-stm32*
+/.cproject
+/.project
+/.settings/
+/Debug/
+/STM32*
+/stm32*
