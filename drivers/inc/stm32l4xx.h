@@ -41,6 +41,9 @@
 #define NVIC_PRI_FIELD_PER_PRI_REG	4
 #define NVIC_PRI_FIELD_BIT_WIDTH	8
 
+void Arm_IRQConfig(uint8_t IRQNum, uint8_t EnorDi);
+void Arm_PriorityConfig(uint8_t IRQNum, uint32_t IRQPriority);
+
 /* ----------------------- MEMORY BASE ADDRESSES -----------------------------*/
 #define FLASH_BASEADDR			0x08000000U  // Base address of FLASH
 #define SRAM1_BASEADDR    		0x20000000U  // Base address of SRAM1
@@ -73,7 +76,10 @@
 #define GPIOF_BASEADDR			(AHB2PERIPH_BASEADDR + 0x1400)
 #define GPIOG_BASEADDR			(AHB2PERIPH_BASEADDR + 0x1800)
 #define GPIOH_BASEADDR			(AHB2PERIPH_BASEADDR + 0x1C00)
-
+#define ADC1_BASEADDR			((AHB2PERIPH_BASEADDR) + 0X10040000UL)
+#define ADC2_BASEADDR			((AHB2PERIPH_BASEADDR) + 0X10040100UL)
+#define ADC3_BASEADDR			((AHB2PERIPH_BASEADDR) + 0X10040200UL)
+#define ADC_COMMON_BASEADDR     ((AHB2PERIPH_BASEADDR) + 0X10040300UL)
 
 /*
  * Base addresses for peripherals present on AHB1 Bus
@@ -115,6 +121,54 @@
 /*
  * Peripheral's Register Structures
  */
+
+typedef struct
+{
+	__vo uint32_t ISR;
+	__vo uint32_t IER;
+	__vo uint32_t CR;
+	__vo uint32_t CFGR;
+	__vo uint32_t RESERVED0;
+	__vo uint32_t SMPR1;
+	__vo uint32_t SMPR2;
+	__vo uint32_t RESERVED1;
+	__vo uint32_t TR1;
+	__vo uint32_t TR2;
+	__vo uint32_t TR3;
+	__vo uint32_t RESERVED2;
+	__vo uint32_t SQR1;
+	__vo uint32_t SQR2;
+	__vo uint32_t SQR3;
+	__vo uint32_t SQR4;
+	__vo uint32_t DR;
+	__vo uint32_t RESERVED3[2];
+	__vo uint32_t JSQR;
+	__vo uint32_t RESERVED4[4];
+	__vo uint32_t OFR1;
+	__vo uint32_t OFR2;
+	__vo uint32_t OFR3;
+	__vo uint32_t OFR4;
+	__vo uint32_t RESERVED5[4];
+	__vo uint32_t JDR1;
+	__vo uint32_t JDR2;
+	__vo uint32_t JDR3;
+	__vo uint32_t JDR4;
+	__vo uint32_t RESERVED6[4];
+	__vo uint32_t AWD2CR;
+	__vo uint32_t AWD3CR;
+	__vo uint32_t RESERVED7[2];
+	__vo uint32_t DIFSEL;
+	__vo uint32_t CALFACT;
+} ADC_RegDef_t;
+
+typedef struct
+{
+	__vo uint32_t CSR;
+	     uint32_t RESERVED0;
+	__vo uint32_t CCR;
+	__vo uint32_t CDR;
+
+} ADC_CommonRegDef_t;
 
 typedef struct
 {
@@ -257,6 +311,11 @@ typedef struct
 #define GPIOG ((GPIO_RegDef_t *)GPIOG_BASEADDR)
 #define GPIOH ((GPIO_RegDef_t *)GPIOH_BASEADDR)
 
+#define ADC1        ((ADC_RegDef_t *)ADC1_BASEADDR)
+#define ADC2        ((ADC_RegDef_t *)ADC2_BASEADDR)
+#define ADC3        ((ADC_RegDeg_t *)ADC3_BASEADDR)
+#define ADC_Common  ((ADC_CommonRegDef_t *)ADC_COMMON_BASEADDR)
+
 
 #define RCC	((RCC_RegDef_t *)RCC_BASEADDR)
 
@@ -295,6 +354,8 @@ typedef struct
 #define GPIOF_PCLK_EN()		( RCC->AHB2ENR |= ( 1 << 5 ) )	  /* GPIO Port F Peripheral Enable Clock */
 #define GPIOG_PCLK_EN()		( RCC->AHB2ENR |= ( 1 << 6 ) )	  /* GPIO Port G Peripheral Enable Clock */
 #define GPIOH_PCLK_EN()		( RCC->AHB2ENR |= ( 1 << 7 ) )	  /* GPIO Port H Peripheral Enable Clock */
+
+#define ADC_PCLK_EN()       ( RCC->AHB2ENR |= ( 1 << 13) )    /* ADC Peripheral Enable Clock */
 
 
 /*
