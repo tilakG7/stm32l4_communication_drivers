@@ -22,6 +22,12 @@
  * Base Address - FLASH, SRAM, ROM
  */
 
+uint32_t SystemCoreClock = 4000000UL;
+
+#define SET_BIT(reg, bitPos)   ( (reg) |=  (0x1 << (bitPos)) )
+#define CLEAR_BIT(reg, bitPos) ( (reg) &= ~(0x1 << (bitPos)) )
+#define READ_BIT(reg, bitPos)  ( (reg) &   (0x1 << (bitPos)) )
+
 /* ----------------------- PROCESSOR SPECIFIC DETAILS -----------------------------*/
 #define NO_PR_BITS_IMPLEMENTED 	4
 
