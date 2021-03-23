@@ -16,35 +16,32 @@
  * -----------------------------------------------------------
  */
 
-/*
- * @speed
- */
+// speed
 #define I2C_SCL_SPEED_SM	100000
 #define I2C_SCL_SPEED_FM	400000
 
-/*
- * @ack control
- */
+
+// ack control
 #define I2C_ACK_EN			1
 #define I2C_ACK_DI			0
 
-/*
- * duty cycle
- */
-#define I2C_FM_DUTY_2 		0	// not sure if my MCU has
-#define I2C_FM_DUTY_16_9	1	// not sure if my MCU has
+
+// duty cycle
+#define I2C_FM_DUTY_2 		0
+#define I2C_FM_DUTY_16_9	1
 
 
 #define I2C_ADD_MODE_7		0
 #define I2C_ADD_MODE_10		1
 
-/*
- * i2c states
- */
+
+// i2c states
 #define I2C_STATE_READY			0
 #define I2C_STATE_IN_RX			1
 #define I2C_STATE_IN_TX			2
 #define I2C_STATE_SLAVE			3
+
+
 
 /* -----------------------------------------------------------
  *  I2C Handle and Configuration Structures
@@ -108,10 +105,10 @@ void I2C_ER_IRQHandler(I2C_Handle_t *pi2c);
  * -----------------------------------------------------------
  */
 
-#define I2C_EV_M_COMM_FAIL  		1// I2C master communication fail event
-		//occurs when master fails to control the bus or receive an ACK from the slave address
-#define I2C_EV_M_TX_FAIL    		2// I2C master tx fail event. Occurs when NACK is received from slave
-
+#define I2C_EV_M_COMM_FAIL  		1 // I2C master communication fail event
+		                              // occurs when master fails to control the bus
+                                      // or receive an ACK from the slave address
+#define I2C_EV_M_TX_FAIL    		2 // I2C master tx fail event. Occurs when NACK is received from slave
 #define I2C_EV_M_NACK				3 // I2C master received a NACK
 #define I2C_EV_M_ERR				4 // I2C error occured
 #define I2C_EV_TRANSACTION_SUCCESS 	5

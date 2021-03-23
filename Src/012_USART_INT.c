@@ -2,16 +2,18 @@
  * 011_USART.c
  *
  *  Created on: Sep. 16, 2020
- *      Author: tilak
+ *      Author: Tilak Gupta
+ *
+ *  Send a lower case string over UART and receive the uppercased version.
+ *
+ *  This code sends data over UART to another application running on the Arduino.
+ *  The code then receives data over UART, which has now been capitalized.
  */
 
 #include <gpio_driver.h>
 #include "usart_driver.h"
 
 
-//UART4 TX: PA0
-//UART4 RX: PA1
-//AF8
 
 void gpio_init()
 {
@@ -58,13 +60,9 @@ void usart_int_init()
 
 int main()
 {
-//	uint8_t *pTxBuffer;
-//	uint8_t *pRxBuffer;
-//	uint8_t txBufferLen;
-//	uint8_t rxBufferLen;
 	gpio_init();
 	usart_int_init();
-	uint8_t ptx[] = "please make this upper case for me bro please!";
+	uint8_t ptx[] = "Please make this uppercase!";
 	uint8_t prx[] = "                                              ";
 
 

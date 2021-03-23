@@ -1,5 +1,6 @@
 /*
- * Code to TX Data to Arduino over SPI1 Peripheral
+ * Test I2C Slave RX/TX Interrupts API.
+ * Some code to test I2C data reception as a slave. Uses interrupts, not polling.
  *
  * Date Created: September 7th, 2020
  * Author:		 Tilak Gupta
@@ -7,7 +8,7 @@
  */
 
 #include "i2c_driver.h"
-#include "stm32l47x_gpio_driver.h"
+#include "gpio_driver.h"
 
 #include "string.h"
 #define MY_ADDR 0x69
@@ -86,7 +87,7 @@ GPIO_Handle_t gpio_init()
 }
 
 volatile int transferLenState = -1; // -1: Nothing, 0x52: transferData 0x51: transferData
-uint8_t buff[] = "This is some goddamn data";
+uint8_t buff[] = "This is some data";
 uint8_t len = sizeof(buff);
 uint8_t* pSlaveBuff;
 
@@ -135,9 +136,6 @@ int main()
 	gpio_init();
 	gpio_led_init();
 	i2c1_init();
-
-//	while(GPIO_ReadPin(button.pGPIOx, button.GPIO_PinConfig.GPIO_PinNumber) != RESET);
-//	delay();
 
 
 	I2C_Init(&h);

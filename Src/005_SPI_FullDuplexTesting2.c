@@ -1,3 +1,12 @@
+/*
+ * Test SPI TX and RX polling APIs.
+ * Code to TX Data to Arduino over SPI1 Peripheral
+ *
+ * Date Created: September 7th, 2020
+ * Author:		 Tilak Gupta
+ *
+ */
+
 #define NACK 				 0xA5
 #define ACK					 0xF5
 
@@ -11,8 +20,8 @@
 #define LED_OFF    			0
 
 
-#include "stm32l47x_spi_driver.h"
-#include "stm32l47x_gpio_driver.h"
+#include "spi_driver.h"
+#include "gpio_driver.h"
 #include "string.h"
 
 

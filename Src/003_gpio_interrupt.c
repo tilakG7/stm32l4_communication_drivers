@@ -23,7 +23,7 @@
 
 
 #include "stm32l4xx.h"
-#include "stm32l47x_gpio_driver.h"
+#include "gpio_driver.h"
 #include <stdint.h>
 
 int main(void)

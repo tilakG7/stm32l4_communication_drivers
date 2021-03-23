@@ -1,5 +1,6 @@
 /*
- * Code to TX Data to Arduino over SPI1 Peripheral
+ * Test I2C Master TX Interrupts API.
+ * STM32 is a I2C master and transmits data to the Arduino using interrupts.
  *
  * Date Created: September 7th, 2020
  * Author:		 Tilak Gupta
@@ -7,11 +8,11 @@
  */
 
 #include "i2c_driver.h"
-#include "stm32l47x_gpio_driver.h"
+#include "gpio_driver.h"
 
 #include "string.h"
 
-uint8_t buff[32] = "HELLOOOO ARDUINO BABY\n";
+uint8_t buff[32] = "HELLOOOO ARDUINO\n";
 GPIO_Handle_t errLed;
 I2C_Handle_t h;
 
@@ -126,8 +127,6 @@ int main()
 
 	I2C_Init(&h);
 
-	//while(I2C_MasterTXRX_INT(&h, sizeof(buff), buff, 0) != I2C_STATE_READY);
-	//while(I2C_MasterTXRX_INT(&h, sizeof(buff), buff, 0) != I2C_STATE_READY);
 
 	buff[0] = 0x51; // command to get length of next transfer
 	while(I2C_MasterTXRX_INT(&h, 1, buff, 0) != I2C_STATE_READY);

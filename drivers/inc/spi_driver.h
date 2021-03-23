@@ -84,10 +84,11 @@ static void SPI_Handle_RXNE(SPI_Handle_t *pSpiHandle);
 static void SPI_Handle_TXE(SPI_Handle_t *pSpiHandle);
 
 void SPI_ApplicationEventCallback(SPI_Handle_t *pSpiHandle, uint8_t event);
+
+
 /*
  * SPI MACROS
  */
-
 #define SPI_DEVICE_MODE_MASTER 			1
 #define SPI_DEVICE_MODE_SLAVE			0
 

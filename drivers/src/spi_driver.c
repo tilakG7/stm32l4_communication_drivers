@@ -65,7 +65,7 @@ void SPI_Init(SPI_Handle_t *pSpiHandle)
 	else if(pSpiHandle->SPI_Config.SPI_BusConfig == SPI_BUS_CONFIG_HALF_DUPLEX)
 	{
 		pSpiHandle->pSPIx->CR1 |= (0x1 << 15);
-		//TODO: would need to configure whether transmitting or receiving
+		//TODO: would need to configure whether transmitting or receiving in the future
 	}
 	else if(pSpiHandle->SPI_Config.SPI_BusConfig == SPI_BUS_CONFIG_SIMPLEX_RX)
 	{
@@ -85,7 +85,7 @@ void SPI_Init(SPI_Handle_t *pSpiHandle)
 	pSpiHandle->pSPIx->CR1 &= ~(0x1 << 1);
 	pSpiHandle->pSPIx->CR1 |= (pSpiHandle->SPI_Config.SPI_CPOL << 1);
 
-	//6. DFF
+	// 6. DFF
 	pSpiHandle->pSPIx->CR2 &= ~(0xF << 8);
 	if(pSpiHandle->SPI_Config.SPI_DFF == SPI_DFF_8)
 	{
@@ -96,7 +96,7 @@ void SPI_Init(SPI_Handle_t *pSpiHandle)
 		pSpiHandle->pSPIx->CR2 |= (0xF << 8);
 	}
 
-	//7. Slave SW Management ON/OFF
+	// 7. Slave SW Management ON/OFF
 	pSpiHandle->pSPIx->CR1 &= ~(0x1 << 9);
 	pSpiHandle->pSPIx->CR1 |= (pSpiHandle->SPI_Config.SPI_SSM << 9);
 
@@ -146,10 +146,10 @@ void SPI_RX(SPI_Handle_t *pSpiHandle, uint8_t *pRxBuff, uint32_t buffLen)
 {
 	while(buffLen > 0)
 	{
-		//1. Wait until RXNE is set
+		// 1. Wait until RXNE is set
 		while(pSpiHandle->pSPIx->SR & (0x1));
 
-		//2. Read DR
+		// 2. Read DR
 		if(pSpiHandle->SPI_Config.SPI_DFF == SPI_DFF_16)
 		{
 			*pRxBuff = *((__vo uint16_t *)(&pSpiHandle->pSPIx->DR));
@@ -339,7 +339,7 @@ static void SPI_Handle_TXE(SPI_Handle_t *pSpiHandle)
 
 	if(pSpiHandle->txLen <= 0)
 	{
-		// reset txeie bit
+		// reset TXEIE bit
 		pSpiHandle->pSPIx->CR2 &= ~(0x1 << 7);
 		// reset other parameters of handle
 		pSpiHandle->pTX = 0;

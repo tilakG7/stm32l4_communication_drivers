@@ -22,10 +22,11 @@ typedef struct
 
 typedef struct
 {
-	GPIO_RegDef_t *pGPIOx; 			/* Base address of the port to which the pin belongs */
-	GPIO_PinConfig_t GPIO_PinConfig; /* GPIO pin configuration settings */
+	GPIO_RegDef_t *pGPIOx; 			 // Base address of the port to which the pin belongs
+	GPIO_PinConfig_t GPIO_PinConfig; // GPIO pin configuration settings
 
 }GPIO_Handle_t;
+
 
 /*
  * GPIO Pin Numbers
@@ -47,23 +48,23 @@ typedef struct
 #define GPIO_PIN_NO_14		14
 #define GPIO_PIN_NO_15		15
 
+
 /*
  * GPIO Pin Possible Modes
  */
-
 #define GPIO_MODE_IN 		0
 #define GPIO_MODE_OUT		1
 #define GPIO_MODE_ALTFCN	2
 #define GPIO_MODE_ANALOG	3
 
-#define GPIO_MODE_IT_FT		4 //WTF is this?
-#define GPIO_MODE_IT_RT		5 //WTF is this?
-#define GPIO_MODE_IT_RFT	6 //WTF is this?
+#define GPIO_MODE_IT_FT		4  // falling edge triggers interrupt
+#define GPIO_MODE_IT_RT		5  // rising edge triggers interrupt
+#define GPIO_MODE_IT_RFT	6  // rising or falling edge triggers interrupt
+
 
 /*
  * GPIO Speed Possibilities
  */
-
 #define GPIO_LOW_SPEED		0
 #define GPIO_MED_SPEED		1
 #define GPIO_HIGH_SPEED		2
@@ -73,17 +74,17 @@ typedef struct
 /*
  * GPIO Pull-up/pull-down possibilities
  */
-
 #define GPIO_PIN_NO_PU_PD	0
 #define GPIO_PIN_PU			1
 #define GPIO_PIN_PD			2
 
+
 /*
  * GPIO Output Type Possibilities
  */
-
 #define GPIO_OP_TYPE_PP		0
 #define GPIO_OP_TYPE_OD		1
+
 
 /*
  * GPIO Alternate Function Select
@@ -105,6 +106,7 @@ typedef struct
 #define GPIO_ALT_FCN_14		14
 #define GPIO_ALT_FCN_15		15
 
+
 /*
  * GPIO SYSCFG Port Value
  */
@@ -117,6 +119,8 @@ typedef struct
 										(x == GPIOG) ? 6:\
 										(x == GPIOH) ? 7:7)
 
+
+
 /********************************************************************************************
  * 								APIs Supported By This Driver
  ********************************************************************************************/
@@ -124,20 +128,23 @@ typedef struct
 
 /*
  * GPIO Clock Control
+ * Enables the passed in GPIO ports clock.
+ *
  */
 void GPIO_ClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi);
 
 
 /*
- * GPIO Initialize and Deinitialize
+ * GPIO Initi  - configures GPIO settings for certain pins
+ * GPIO Deinit - resets the GPIO port settings
  */
 void GPIO_Init(GPIO_Handle_t *pGPIOHandle);
-void GPIO_DeInit(GPIO_RegDef_t *pGPIOx); // how can we tell which GPIO port this is just by looking at address?
+void GPIO_DeInit(GPIO_RegDef_t *pGPIOx);
 
 /*
  * GPIO Read and Write
  */
-uint8_t GPIO_ReadPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);
+uint8_t  GPIO_ReadPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);
 uint16_t GPIO_ReadPort(GPIO_RegDef_t *pGPIOx);
 void GPIO_WritePin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber, uint8_t Value);
 void GPIO_WritePort(GPIO_RegDef_t *pGPIOx, uint16_t value);

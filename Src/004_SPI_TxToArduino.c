@@ -1,13 +1,14 @@
 /*
- * Code to TX Data to Arduino over SPI1 Peripheral
+ * Test the SPI TX Polling API.
+ * Transmits data to Arduino over SPI1 Peripheral
  *
  * Date Created: September 7th, 2020
  * Author:		 Tilak Gupta
  *
  */
 
-#include "stm32l47x_spi_driver.h"
-#include "stm32l47x_gpio_driver.h"
+#include "spi_driver.h"
+#include "gpio_driver.h"
 
 #include "string.h"
 
@@ -104,7 +105,7 @@ int main()
 	GPIO_Handle_t buttonH = gpio_button_init();
 	SPI_Handle_t  spiH    = spi_init();
 
-	char txBuff[] = "Do you copy Arduino!???";
+	char txBuff[] = "Do you copy Arduino?";
 	uint8_t txBuffLen = strlen(txBuff);
 
 	while(GPIO_ReadPin(GPIOC, GPIO_PIN_NO_13) != RESET);

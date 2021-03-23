@@ -1,4 +1,5 @@
 /*
+ * Test SPI TX with Interrupts API.
  * Code to TX Data to Arduino over SPI1 Peripheral
  *
  * Date Created: September 7th, 2020
@@ -6,14 +7,14 @@
  *
  */
 
-#include "stm32l47x_spi_driver.h"
-#include "stm32l47x_gpio_driver.h"
+#include "spi_driver.h"
+#include "gpio_driver.h"
 
 #include "string.h"
 
 
 SPI_Handle_t spi;
-char txBuff[] = " Do you copy Arduino!???";
+char txBuff[] = " Arduino are you reading this?";
 
 void delay()
 {

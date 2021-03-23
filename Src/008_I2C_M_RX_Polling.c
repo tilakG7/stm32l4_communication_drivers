@@ -1,5 +1,6 @@
 /*
- * Code to TX Data to Arduino over SPI1 Peripheral
+ * Test I2C Master RX polling API.
+ * STM32 is a I2C master and receives data to the Arduino by polling I2C flags.
  *
  * Date Created: September 7th, 2020
  * Author:		 Tilak Gupta
@@ -7,7 +8,7 @@
  */
 
 #include "i2c_driver.h"
-#include "stm32l47x_gpio_driver.h"
+#include "gpio_driver.h"
 
 #include "string.h"
 

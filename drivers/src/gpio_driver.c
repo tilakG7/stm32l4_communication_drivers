@@ -8,9 +8,7 @@
 
 #include <gpio_driver.h>
 
-/*
- * GPIO Clock Control
- */
+
 
 void GPIO_ClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
 {
@@ -87,9 +85,6 @@ void GPIO_ClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
 }
 
 
-/*
- * GPIO Initialize and Deinitialize
- */
 
 void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 {
@@ -106,7 +101,7 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 	else
 	{
 		temp = GPIO_MODE_IN << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
-		//TODO: Make sure this is correct. Set the pin in input mode?
+
 		pGPIOHandle->pGPIOx->MODER = (pGPIOHandle->pGPIOx->MODER & (~mask)) | temp;
 
 		if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_IT_FT)
@@ -177,9 +172,9 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 	}
 }
 
-void GPIO_DeInit(GPIO_RegDef_t *pGPIOx) // how can we tell which GPIO port this is just by looking at address?
+void GPIO_DeInit(GPIO_RegDef_t *pGPIOx)
 {
-	//AHB2 reset register in RCC Peripheral
+	// Set the appropriate bit in the AHB2 reset register in RCC Peripheral
 	if(pGPIOx == GPIOA)
 	{
 		GPIOA_REG_RESET();

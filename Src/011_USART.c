@@ -3,11 +3,13 @@
  * 011_USART.c
  *
  *  Created on: Sep. 16, 2020
- *      Author: tilak
+ *      Author: Tilak Gupta
+ *
+ *  Test sending data over UART to an Arduino
  */
 
 #include "usart_driver.h"
-#include "stm32l47x_gpio_driver.h"
+#include "gpio_driver.h"
 
 
 //UART4 TX: PA0
@@ -58,14 +60,10 @@ USART_Handle_t usart_int_init()
 
 int main()
 {
-//	uint8_t *pTxBuffer;
-//	uint8_t *pRxBuffer;
-//	uint8_t txBufferLen;
-//	uint8_t rxBufferLen;
 	gpio_init();
 	USART_Handle_t uh = usart_int_init();
 
-	uint8_t buff[] = "ARDUINO FOR THE LAST TIME IN THIS COURSE WTFFF";
+	uint8_t buff[] = "ARDUINO HELLO!!";
 	USART_SendData(&uh, buff, sizeof(buff));
 
 	while(1);
