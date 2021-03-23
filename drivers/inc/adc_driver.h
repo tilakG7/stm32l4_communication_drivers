@@ -14,18 +14,19 @@
 
 
 typedef struct{
-	ADC_RegDef_t       *pADCx;
-	ADC_Init_t			Init;
-}ADC_Handle_t;
-
-typedef struct{
 	uint32_t ChannelDiffInputMode; /* Up to 19 channels are represented with bits 0-18.
 								    * Bits set to 1 indicate input channel is
 								    * operating in differential mode. Otherwise single
 								    * ended mode.
 								    */
-x
 }ADC_Init_t;
+
+typedef struct{
+	ADC_RegDef_t       *pADCx;
+	ADC_Init_t			Init;
+}ADC_Handle_t;
+
+
 
 
 /*
@@ -52,7 +53,7 @@ void ADCx_Init(ADC_Handle_t *pADC);
  *
  * @param pADC: pointer to ADC_Handle_t structure
  */
-void ADCx_Disable(ADC_Handle_t *pADC)
+void ADCx_Disable(ADC_Handle_t *pADC);
 
 /*
  * Powers down all ADCs. The ADC voltage regulator is turned off.
@@ -60,7 +61,7 @@ void ADCx_Disable(ADC_Handle_t *pADC)
  *
  * @param pADC: pointer to ADC_Handle_t structure
  */
-void ADC_PowerDown();
+void ADC_PowerDown(ADC_Handle_t *pADC);
 
 
 /*

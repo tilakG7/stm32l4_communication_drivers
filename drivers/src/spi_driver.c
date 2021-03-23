@@ -6,7 +6,7 @@
  */
 
 
-#include "stm32l47x_spi_driver.h"
+#include <spi_driver.h>
 
 void SPI_SetPCLK(SPI_Handle_t *pSpiHandle, uint8_t enOrDi)
 {

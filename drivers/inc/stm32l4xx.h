@@ -10,6 +10,8 @@
 
 #include <stdint.h>
 
+uint32_t SystemCoreClock;
+
 #define __vo volatile
 
 #define ENABLE 		 	1
@@ -21,8 +23,6 @@
 /*
  * Base Address - FLASH, SRAM, ROM
  */
-
-uint32_t SystemCoreClock = 4000000UL;
 
 #define SET_BIT(reg, bitPos)   ( (reg) |=  (0x1 << (bitPos)) )
 #define CLEAR_BIT(reg, bitPos) ( (reg) &= ~(0x1 << (bitPos)) )

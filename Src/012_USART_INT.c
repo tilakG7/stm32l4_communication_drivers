@@ -5,8 +5,8 @@
  *      Author: tilak
  */
 
+#include <gpio_driver.h>
 #include "usart_driver.h"
-#include "stm32l47x_gpio_driver.h"
 
 
 //UART4 TX: PA0

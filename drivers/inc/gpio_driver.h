@@ -5,8 +5,8 @@
  *      Author: Tilak Gupta
  */
 
-#ifndef INC_STM32L47X_GPIO_DRIVER_H_
-#define INC_STM32L47X_GPIO_DRIVER_H_
+#ifndef INC_GPIO_DRIVER_H_
+#define INC_GPIO_DRIVER_H_
 
 #include "stm32l4xx.h"
 
@@ -160,4 +160,4 @@ void GPIO_PriorityConfig(uint8_t IRQNum, uint32_t IRQPriority);
 
 
 
-#endif /* INC_STM32L47X_GPIO_DRIVER_H_ */
+#endif /* INC_GPIO_DRIVER_H_ */

@@ -6,7 +6,7 @@
  */
 
 
-#include "stm32l47x_gpio_driver.h"
+#include <gpio_driver.h>
 
 /*
  * GPIO Clock Control
